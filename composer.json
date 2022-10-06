@@ -1,0 +1,28 @@
+{
+  "name": "kamephis/avatar",
+  "version": "1.0.0",
+  "description": "Custom avatars for magento 2",
+  "type": "magento2-module",
+  "require": {
+    "magento/framework": "*"
+  },
+  "license": [
+    "GNU General Public License (GPL)"
+  ],
+  "authors": [
+    {
+      "name": "Marlon Boehland",
+      "email": "kamephis@gmail.com",
+      "homepage": "https://www.boehland.one",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Kamephis\\Avatar\\": ""
+    }
+  }
+}
