@@ -7,7 +7,7 @@
              title="Custom Avatars"
              module="Kamephis_Avatar"
              sortOrder="20"
-             parent="Kamephis_Avatar::menu"
+             parent="Kamephis_Base::menu"
              action="adminhtml/system_config/edit/section/kamephis_avatar"
              resource="Magento_Config::config"
         />
