@@ -4,7 +4,8 @@
   "description": "Custom avatars for magento 2",
   "type": "magento2-module",
   "require": {
-    "magento/framework": "*"
+    "magento/framework": "*",
+    "kamephis/core": "^1.0.0"
   },
   "license": [
     "GNU General Public License (GPL)"
