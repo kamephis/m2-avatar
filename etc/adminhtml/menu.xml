@@ -3,16 +3,16 @@
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
         <add id="Kamephis_Avatar::menu"
-             title="Kamephis" module="Kamephis_Custom"
+             title="Kamephis" module="Kamephis_Avatar"
              sortOrder="10"
              resource="Kamephis_Avatar::menu"
         />
-        <add id="Kamephis_Avatar::enable_avatar"
+        <add id="Kamephis_Avatar::avatar"
              title="Magento Avatar"
              module="Kamephis_Avatar"
              sortOrder="20"
              parent="Kamephis_Avatar::menu"
-             action="adminhtml/system_config/edit/section/enable_avatar"
+             action="adminhtml/system_config/edit/section/kamephis_avatar"
              resource="Magento_Config::config"
         />
     </menu>

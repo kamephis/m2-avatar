@@ -1,2 +1,3 @@
-# m2-avatar
-Module for adding a custom avatar to Magento 2
+# Avatar Module
+
+The avatar module provides custom avatar functionality for Magento 2.
