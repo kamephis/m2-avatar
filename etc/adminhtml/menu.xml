@@ -3,7 +3,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Kamephis_Core::avatar"
+        <add id="Kamephis_Base::avatar"
              title="Custom Avatars"
              module="Kamephis_Avatar"
              sortOrder="20"
