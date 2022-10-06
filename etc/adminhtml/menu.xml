@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
+<!-- move to kamephis core -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
@@ -8,7 +9,7 @@
              resource="Kamephis_Avatar::menu"
         />
         <add id="Kamephis_Avatar::avatar"
-             title="Magento Avatar"
+             title="Custom Avatars"
              module="Kamephis_Avatar"
              sortOrder="20"
              parent="Kamephis_Avatar::menu"

@@ -11,21 +11,21 @@
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <tab id="kamephis" sortOrder="0" class="amorana-tab">
+        <tab id="kamephis" sortOrder="0" class="kamephis-tab">
             <label>Kamephis</label>
         </tab>
         <section id="enable_avatar" translate="label" sortOrder="10" showInDefault="1" showInWebsite="0"
                  showInStore="0">
             <class>separator-top</class>
-            <label>Category Brand Image</label>
-            <tab>amorana</tab>
-            <resource>Amorana_Custom::config</resource>
+            <label>Custom Avatars</label>
+            <tab>kamephis</tab>
+            <resource>Kamephis_Avatar::config</resource>
             <group id="options" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0"
                    showInStore="0">
-                <label>Brand Logo</label>
-                <field id="enable_logo" translate="label" type="select" sortOrder="500" showInDefault="1" showInWebsite="0"
+                <label>Custom Avatar</label>
+                <field id="enable" translate="label" type="select" sortOrder="500" showInDefault="1" showInWebsite="0"
                        showInStore="0">
-                    <label>Enable brand image on category</label>
+                    <label>Enable custom avatars</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
             </group>
