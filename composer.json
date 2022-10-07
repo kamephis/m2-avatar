@@ -1,15 +1,12 @@
 {
   "name": "kamephis/avatar",
-  "version": "1.0.0",
   "description": "Custom avatars for magento 2",
   "type": "magento2-module",
   "require": {
     "php": ">=7.4",
     "kamephis/m2-base": ">=1.0.0"
   },
-  "license": [
-    "GNU General Public License (GPL)"
-  ],
+  "license" : "Apache-2.0",
   "authors": [
     {
       "name": "Marlon Boehland",
