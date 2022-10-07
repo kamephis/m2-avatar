@@ -4,7 +4,7 @@
   "type": "magento2-module",
   "require": {
     "php": ">=7.4",
-    "kamephis/m2-base": ">=1.0.0"
+    "kamephis/m2-base": "^1.0.0"
   },
   "license" : "Apache-2.0",
   "authors": [
