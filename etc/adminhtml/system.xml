@@ -22,11 +22,25 @@
             <resource>Kamephis_Avatar::config</resource>
             <group id="options" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0"
                    showInStore="0">
-                <label>Custom Avatar</label>
-                <field id="enable" translate="label" type="select" sortOrder="500" showInDefault="1" showInWebsite="0"
+                <label>General</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0"
                        showInStore="0">
                     <label>Enable custom avatars</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="api_endpoint" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>API Endpoint</label>
+                    <comment>API URL of a translation service</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="api_token" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>API Token</label>
+                    <comment>API Token: Bearer, key etc.</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
                 </field>
             </group>
         </section>
