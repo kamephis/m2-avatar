@@ -3,6 +3,7 @@
 namespace Kamephis\Avatar\Test\Unit;
 
 use Kamephis\Avatar\Model\Avatar;
+use Kamephis\Avatar\Enum\AvatarTypes;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 use Magento\Framework\Model\AbstractModel;
 use PHPUnit\Framework\TestCase;
@@ -24,14 +25,31 @@ class TestAvatar extends TestCase
     }
 
     /**
-     * Test emailToHash
      * @return void
-     * @throws \Magento\Framework\Exception\LocalizedException
      */
-    public function testEmailToHash()
+    public function testAvatarTypes()
     {
-        $email = "MyEmailAddress@example.com ";
-        $hash = "0bc83cb571cd1c50ba6f3e8a78ef1346";
-        $this->assertEquals($hash, $this->object->emailToHash($email));
+        $expected = 'identicon';
+        $type = AvatarTypes::IDENTICON;
+        $this->assertEquals($expected, AvatarTypes::tryFrom(0)->getType());
+    }
+
+    /**
+     * @return void
+     */
+    public function testAvatarCases()
+    {
+        $expected = [
+            AvatarTypes::IDENTICON,
+            AvatarTypes::MONSTERID,
+            AvatarTypes::WAVATAR,
+            AvatarTypes::RETRO,
+            AvatarTypes::ROBOHASH,
+            AvatarTypes::BLANK,
+            AvatarTypes::NOTFOUND
+        ];
+
+        $this->assertIsArray($expected, 'Cases list is not of type array.');
+        $this->assertEquals($expected, AvatarTypes::cases(), 'Arrays are not identical.');
     }
 }
