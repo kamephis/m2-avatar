@@ -24,8 +24,6 @@ class Avatar implements AvatarInterface
      */
     public function getAvatarUrl(string $hash, AvatarTypes $type): string
     {
-        // https://www.gravatar.com/avatar/0bc83cb571cd1c50ba6f3e8a78ef1346?d=identicon
-        return urlencode(self::GRAVATAR_BASE_URL . $hash . '?d=' . $type->value);
+        return urlencode(self::GRAVATAR_BASE_URL . $hash . '?d=' . $type->getType());
     }
-
 }
