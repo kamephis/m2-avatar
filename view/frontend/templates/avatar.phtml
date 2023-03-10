@@ -1,3 +1,24 @@
 <?php /** @var \Kamephis\Avatar\Block\Gravatar $block */ ?>
-Account Image
-<img src="<?php echo $block->escapeUrl($block->getGravatarUrl('user@example.com')); ?>" alt="User's gravatar">
+<style>
+    .avatar-circle {
+        display: inline-block;
+        overflow: hidden;
+        border-radius: 50%;
+        width: 100px; /* oder die Größe, die Sie möchten */
+        height: 100px; /* oder die Größe, die Sie möchten */
+        background: #1b721a;
+        border: 1px solid #1e7c1d;
+    }
+
+    .avatar-circle img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+
+</style>
+
+<div class="avatar-circle">
+    <img src="<?php echo $block->escapeUrl($block->getGravatarUrl()); ?>" alt="User's gravatar">
+</div>
+

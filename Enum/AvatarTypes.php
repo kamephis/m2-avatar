@@ -12,9 +12,31 @@ enum AvatarTypes : int
     case BLANK = 5;
     case NOTFOUND = 6;
 
-    public function getAll()
+    public function getName() : string
     {
-        return $this;
+        return match($this)
+        {
+            self::IDENTICON => 'Identicon',
+            self::MONSTERID => 'Monster ID',
+            self::WAVATAR => 'Wavatar',
+            self::RETRO => 'Retro',
+            self::ROBOHASH => 'Robohash',
+            self::BLANK => 'Blank',
+            self::NOTFOUND => '404 Not Found',
+        };
+    }
+
+    public static function getAll(): array
+    {
+        return [
+            self::IDENTICON,
+            self::MONSTERID,
+            self::WAVATAR,
+            self::RETRO,
+            self::ROBOHASH,
+            self::BLANK,
+            self::NOTFOUND,
+        ];
     }
 
     /**
