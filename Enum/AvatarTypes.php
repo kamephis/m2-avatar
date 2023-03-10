@@ -16,7 +16,7 @@ enum AvatarTypes : int
     {
         return $this;
     }
-    
+
     /**
      * @return string
      */
@@ -25,7 +25,7 @@ enum AvatarTypes : int
         return match($this)
         {
             self::IDENTICON => 'identicon',
-            self::MONSTERID => 'monterid',
+            self::MONSTERID => 'monsterid',
             self::WAVATAR => 'wavatar',
             self::RETRO => 'retro',
             self::ROBOHASH => 'robohash',
