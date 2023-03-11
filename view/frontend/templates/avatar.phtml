@@ -38,10 +38,9 @@
         <?= $block->escapeUrl($block->customerHelper->getCustomerAttribute('firstname')); ?>
         <?= $block->escapeUrl($block->customerHelper->getCustomerAttribute('lastname')); ?>
         </b><br>
-
-        <?php /* $block->escapeUrl($block->customerHelper->getCustomerAttribute('email')); */?>
         <?= __('Last login: ');?>
         <?php echo $block->customerHelper->getCustomerLastLoginDate(); ?><br>
+        <a href="<?= $block->getUrl('customer/account/logout'); ?>"><?= __('Sign Out') ?></a>
     </div>
 </div>
 
