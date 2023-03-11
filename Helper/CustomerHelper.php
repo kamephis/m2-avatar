@@ -8,19 +8,23 @@ use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\App\Helper\AbstractHelper;
-
+use Magento\Customer\Model\LogFactory;
 
 class CustomerHelper extends AbstractHelper
 {
     private CustomerRepositoryInterface $customerRepository;
     private CustomerSession $customerSession;
+    private LogFactory $logFactory;
 
     public function __construct(
         CustomerRepositoryInterface $customerRepository,
-        CustomerSession $customerSession
-    ) {
+        CustomerSession             $customerSession,
+        LogFactory                  $logFactory
+    )
+    {
         $this->customerRepository = $customerRepository;
         $this->customerSession = $customerSession;
+        $this->logFactory = $logFactory;
     }
 
     /**
@@ -34,7 +38,7 @@ class CustomerHelper extends AbstractHelper
             throw new LocalizedException(__('Customer is not logged in'));
         }
 
-        return (int) $this->customerSession->getCustomerId();
+        return (int)$this->customerSession->getCustomerId();
     }
 
     /**
@@ -68,4 +72,30 @@ class CustomerHelper extends AbstractHelper
 
         return $customerData[$attributeCode];
     }
+
+    /**
+     * Get the last login date of the current customer
+     *
+     * @throws LocalizedException if the customer is not logged in
+     */
+    public function getCustomerLastLoginDate(): string
+    {
+        try {
+            $customerId = $this->getCustomerId();
+            $customerSession = $this->customerSession;
+            $loginDate = $customerSession->getData('customer_last_login_date');
+
+            if (!$loginDate) {
+                $customerSession->setData('customer_last_login_date', time());
+                return 'N/A';
+            }
+            return date('d.m.Y H:i', $loginDate);
+        } catch (LocalizedException $e) {
+            throw new LocalizedException(__('Error retrieving customer last login date: %1', $e->getMessage()), $e);
+        } catch (\Exception $e) {
+            throw new LocalizedException(__('An error occurred while retrieving customer last login date: %1', $e->getMessage()), $e);
+        }
+    }
+
+
 }

@@ -21,29 +21,24 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        margin: 10px 0 20px 0;
     }
 
 
 </style>
-
-<?php
-    // $customer = $block->getCustomerInfo()->getCustomer();
-?>
-
 <div class="customer-info-wrapper">
-
     <div class="avatar-wrapper">
         <div class="avatar-circle">
             <img src="<?php echo $block->escapeUrl($block->getGravatarUrl()); ?>" alt="User's gravatar">
         </div>
-
     </div>
 
     <div class="customer-info">
         <?= $block->escapeUrl($block->customerHelper->getCustomerAttribute('firstname')); ?>
         <?= $block->escapeUrl($block->customerHelper->getCustomerAttribute('lastname')); ?><br>
         <?= $block->escapeUrl($block->customerHelper->getCustomerAttribute('email')); ?><br>
-        <?= $block->escapeUrl($block->customerHelper->getCustomerAttribute('id')); ?><br>
+        <?= __('Last login: ');?><br>
+        <?php echo $block->customerHelper->getCustomerLastLoginDate(); ?><br>
     </div>
 </div>
 
