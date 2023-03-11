@@ -1,15 +1,8 @@
 <?xml version="1.0"?>
-<!--
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
--->
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <update handle="customer_account"/>
-    <body>
-        <referenceContainer name="content">
-            <block class="Kamephis\Avatar\Block\Avatar" name="customer_custom" before="customer_account_dashboard_info"   template="Kamephis_Avatar::avatar.phtml"/>
-        </referenceContainer>
-    </body>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+<body>
+    <referenceContainer name="sidebar.main">
+        <block class="Kamephis\Avatar\Block\Avatar" name="customer_custom" template="Kamephis_Avatar::avatar.phtml" before="-" />
+    </referenceContainer>
+</body>
 </page>

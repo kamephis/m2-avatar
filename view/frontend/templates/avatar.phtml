@@ -16,8 +16,34 @@
         max-width: 100%;
         height: auto;
     }
+
+    .customer-info-wrapper{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+
 </style>
 
-<div class="avatar-circle">
-    <img src="<?php echo $block->escapeUrl($block->getGravatarUrl()); ?>" alt="User's gravatar">
+<?php
+    // $customer = $block->getCustomerInfo()->getCustomer();
+?>
+
+<div class="customer-info-wrapper">
+
+    <div class="avatar-wrapper">
+        <div class="avatar-circle">
+            <img src="<?php echo $block->escapeUrl($block->getGravatarUrl()); ?>" alt="User's gravatar">
+        </div>
+
+    </div>
+
+    <div class="customer-info">
+        <?= $block->escapeUrl($block->customerHelper->getCustomerAttribute('firstname')); ?>
+        <?= $block->escapeUrl($block->customerHelper->getCustomerAttribute('lastname')); ?><br>
+        <?= $block->escapeUrl($block->customerHelper->getCustomerAttribute('email')); ?><br>
+        <?= $block->escapeUrl($block->customerHelper->getCustomerAttribute('id')); ?><br>
+    </div>
 </div>
+
