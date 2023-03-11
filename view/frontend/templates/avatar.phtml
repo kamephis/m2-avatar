@@ -5,8 +5,8 @@
         display: inline-block;
         overflow: hidden;
         border-radius: 50%;
-        width: 80px;
-        height: 80px;
+        width: 50px;
+        height: 50px;
         background: #1b721a;
         border: 1px solid #1e7c1d;
     }
@@ -34,10 +34,13 @@
     </div>
 
     <div class="customer-info">
+        <b>
         <?= $block->escapeUrl($block->customerHelper->getCustomerAttribute('firstname')); ?>
-        <?= $block->escapeUrl($block->customerHelper->getCustomerAttribute('lastname')); ?><br>
-        <?= $block->escapeUrl($block->customerHelper->getCustomerAttribute('email')); ?><br>
-        <?= __('Last login: ');?><br>
+        <?= $block->escapeUrl($block->customerHelper->getCustomerAttribute('lastname')); ?>
+        </b><br>
+
+        <?php /* $block->escapeUrl($block->customerHelper->getCustomerAttribute('email')); */?>
+        <?= __('Last login: ');?>
         <?php echo $block->customerHelper->getCustomerLastLoginDate(); ?><br>
     </div>
 </div>
