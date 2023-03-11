@@ -9,7 +9,12 @@ class AvatarTypes implements OptionSourceInterface
 {
     public function toOptionArray()
     {
-        $options = [];
+        $options = [
+            [
+                'value' => '',
+                'label' => __('none')
+            ]
+        ];
 
         foreach (Types::getAll() as $type) {
             $options[] = ['value' => $type->getType(), 'label' => __($type->getName())];

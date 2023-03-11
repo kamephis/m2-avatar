@@ -30,27 +30,29 @@ class Avatar extends Template
     }
 
     /**
-     * Generates a Gravatar URL based on the current customer's email address, type of Gravatar image, and size.
-     * @param AvatarTypes $type The type of Gravatar image to use. Defaults to ROBOHASH if not provided.
-     * @param int|null $size The size of the Gravatar image in pixels. Defaults to 80 if not provided.
+     * Generates a Gravatar URL for the given email address, avatar type, size, and default image.
+     *
+     * @param AvatarTypes|null $type The type of avatar to generate. Defaults to AvatarTypes::ROBOHASH if not provided.
+     * @param int|null $size The size of the avatar in pixels. Defaults to 80 if not provided.
+     * @param string|null $default The default image to use if no avatar is found. Defaults to 'y' if not provided.
      * @return string The generated Gravatar URL.
-     * @todo: use the values of the admin form
+     * @throws \Magento\Framework\Exception\NoSuchEntityException If the customer session is not available.
      */
-    public function getGravatarUrl(AvatarTypes $type = AvatarTypes::ROBOHASH, ?int $size = null): string
+    public function getGravatarUrl(AvatarTypes $type = AvatarTypes::ROBOHASH, ?int $size = null, ?string $default = 'y'): string
     {
-        $avatarType = $this->scopeConfig->getValue('kamephis_avatar/general/type') ?? AvatarTypes::ROBOHASH;
+        $avatarType = $this->scopeConfig->getValue('kamephis_avatar/general/type') ?? $type->getType();
         $size = $size ?? $this->scopeConfig->getValue('kamephis_avatar/general/size') ?? 80;
-
+        $urlParams = $default === 'y' ? '%s%s?s=%d&d=%s&r=pg&f=y' : '%s%s?s=%d&d=%s&r=pg';
         $email = $this->customerSession->getCustomer()->getEmail();
         $hash = md5(strtolower(trim($email)));
 
         $url = sprintf(
-            '%s%s?s=%d&d=%s&r=pg&type=%s',
+            $urlParams,
             self::GRAVATAR_API_BASE_URL,
             $hash,
             $size,
-            $avatarType->getType(),
-            $type->getType()
+            $avatarType,
+            $default
         );
 
         return $url;

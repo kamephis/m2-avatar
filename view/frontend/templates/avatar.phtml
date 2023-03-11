@@ -1,11 +1,12 @@
 <?php /** @var \Kamephis\Avatar\Block\Gravatar $block */ ?>
+
 <style>
     .avatar-circle {
         display: inline-block;
         overflow: hidden;
         border-radius: 50%;
-        width: 100px; /* oder die Größe, die Sie möchten */
-        height: 100px; /* oder die Größe, die Sie möchten */
+        width: 80px;
+        height: 80px;
         background: #1b721a;
         border: 1px solid #1e7c1d;
     }
@@ -15,10 +16,8 @@
         max-width: 100%;
         height: auto;
     }
-
 </style>
 
 <div class="avatar-circle">
     <img src="<?php echo $block->escapeUrl($block->getGravatarUrl()); ?>" alt="User's gravatar">
 </div>
-

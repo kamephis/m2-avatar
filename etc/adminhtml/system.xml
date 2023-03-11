@@ -30,17 +30,21 @@
                 </field>
             </group>
         </section>
+
         <section id="kamephis_avatar" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Kamephis Avatar</label>
             <tab>kamephis</tab>
             <resource>Kamephis_Avatar::config_kamephis_avatar</resource>
-            <group id="gravatar" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+
+            <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Gravatar Settings</label>
-                <field id="default" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+
+                <field id="type" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Default Gravatar Type</label>
                     <comment>Select the default Gravatar type to use if the customer does not have a Gravatar account.</comment>
                     <source_model>Kamephis\Avatar\Model\Config\Source\AvatarTypes</source_model>
                 </field>
+
                 <field id="size" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Gravatar Size</label>
                     <comment>Enter the default size (in pixels) for the Gravatar image.</comment>
