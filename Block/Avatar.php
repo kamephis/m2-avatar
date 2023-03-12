@@ -94,5 +94,22 @@ class Avatar extends Template
             $userInfo
         );
     }
+    /**
+     * Returns the customer's last login date.
+     * @return string The customer's last login date in the format Y-m-d H:i:s.
+     */
+    public function getLastLoginDate(): string
+    {
+        return $this->customerHelper->getCustomerLastLoginDate($this->customerSession->getCustomerId());
+    }
+    /**
+     * Returns the URL for the customer's avatar information.
+     *
+     * @return string The URL for the customer's avatar information.
+     */
+    public function getAvatarInfoUrl(): string
+    {
+        return $this->getUrl('kamephis_customeravatar/index/index');
+    }
 
 }
