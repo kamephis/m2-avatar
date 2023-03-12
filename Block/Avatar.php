@@ -94,5 +94,12 @@ class Avatar extends Template
             $userInfo
         );
     }
-
+    /**
+     * Returns the customer's last login date.
+     * @return string The customer's last login date in the format Y-m-d H:i:s.
+     */
+    public function getLastLoginDate(): string
+    {
+        return $this->customerHelper->getCustomerLastLoginDate($this->customerSession->getCustomerId());
+    }
 }
