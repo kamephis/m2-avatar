@@ -9,12 +9,15 @@ use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Customer\Model\LogFactory;
+use PHPUnit\Exception;
+use function PHPUnit\Framework\throwException;
 
 class CustomerHelper extends AbstractHelper
 {
     private CustomerRepositoryInterface $customerRepository;
     private CustomerSession $customerSession;
     private LogFactory $logFactory;
+    private \DateTimeZone $timeZone;
 
     public function __construct(
         CustomerRepositoryInterface $customerRepository,
@@ -25,6 +28,19 @@ class CustomerHelper extends AbstractHelper
         $this->customerRepository = $customerRepository;
         $this->customerSession = $customerSession;
         $this->logFactory = $logFactory;
+    }
+
+    /**
+     * Get the users Timezone
+     * @return \DateTimeZone
+     */
+    protected function getUserTimeZone() : \DateTimeZone
+    {
+        try{
+            return $this->timeZone = date_default_timezone_get();
+        } catch(Exception $e){
+            $this->_logger->error('Could not get timezone.');
+        }
     }
 
     /**
@@ -48,6 +64,9 @@ class CustomerHelper extends AbstractHelper
      */
     public function getCustomerData(): array
     {
+        if (!$this->customerSession->isLoggedIn()) {
+            throw new LocalizedException(__('Customer is not logged in'));
+        }
         $customerId = $this->getCustomerId();
         $customer = $this->customerRepository->getById($customerId);
 
@@ -64,6 +83,10 @@ class CustomerHelper extends AbstractHelper
      */
     public function getCustomerAttribute(string $attributeCode)
     {
+        if (!$this->customerSession->isLoggedIn()) {
+            throw new LocalizedException(__('Customer is not logged in'));
+        }
+
         $customerData = $this->getCustomerData();
 
         if (!isset($customerData[$attributeCode])) {
@@ -80,15 +103,15 @@ class CustomerHelper extends AbstractHelper
      */
     public function getCustomerLastLoginDate(): string
     {
+        if (!$this->customerSession->isLoggedIn()) {
+            throw new LocalizedException(__('Customer is not logged in'));
+        }
+
         try {
             $customerId = $this->getCustomerId();
             $customerSession = $this->customerSession;
             $loginDate = $customerSession->getData('customer_last_login_date');
 
-            if (!$loginDate) {
-                $customerSession->setData('customer_last_login_date', time());
-                return 'N/A';
-            }
             return date('d.m.Y H:i', $loginDate);
         } catch (LocalizedException $e) {
             throw new LocalizedException(__('Error retrieving customer last login date: %1', $e->getMessage()), $e);
@@ -96,6 +119,4 @@ class CustomerHelper extends AbstractHelper
             throw new LocalizedException(__('An error occurred while retrieving customer last login date: %1', $e->getMessage()), $e);
         }
     }
-
-
 }

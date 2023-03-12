@@ -20,11 +20,14 @@
     .customer-info-wrapper{
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: flex-start;
         margin: 10px 0 20px 0;
     }
+    .customer-info{
+        margin-left: 20px;
+    }
 </style>
-<!--
+
 <div class="customer-info-wrapper">
     <div class="avatar-wrapper">
         <div class="avatar-circle">
@@ -34,47 +37,34 @@
 
     <div class="customer-info">
         <b>
-        <?= $block->escapeUrl($block->customerHelper->getCustomerAttribute('firstname')); ?>
-        <?= $block->escapeUrl($block->customerHelper->getCustomerAttribute('lastname')); ?>
+        <?= __('Hello');?> <?= $block->escapeUrl($block->customerHelper->getCustomerAttribute('firstname')); ?>
         </b><br>
-        <?= __('Last login: ');?>
-        <?php echo $block->customerHelper->getCustomerLastLoginDate(); ?><br>
+        <?= __('Last login: ');?><br>
+        <span class="last-login-date-block"></span>
+        <br><br>
         <a href="<?= $block->getUrl('customer/account/logout'); ?>"><?= __('Sign Out') ?></a>
     </div>
 </div>
--->
-
-<div>
-    <h2>Avatar</h2>
-    <img data-bind="attr: {src: avatar_url}" alt="Avatar">
-    <div data-bind="html: avatar_html"></div>
-    <div data-bind="html: info_block"></div>
-    <p>Last login date: <span data-bind="text: last_login_date"></span></p>
-</div>
 
 <script>
-    require([
-        'jquery',
-        'knockout'
-    ], function ($, ko) {
-        $(function () {
-            var viewModel = {
-                avatar_url: ko.observable(''),
-                avatar_html: ko.observable(''),
-                info_block: ko.observable(''),
-                last_login_date: ko.observable('')
-            };
-            $.ajax({
-                url: '<?php echo $block->getUrl("kamephis_avatar/avatar/index") ?>',
-                dataType: 'json',
-                success: function (data) {
-                    viewModel.avatar_url(data.avatar_url);
-                    viewModel.avatar_html(data.avatar_html);
-                    viewModel.info_block(data.info_block);
-                    viewModel.last_login_date(data.last_login_date);
+    window.addEventListener('load', function() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '<?= $block->getUrl("kamephis_avatar/avatar/index") ?>', true);
+        xhr.onload = function() {
+            if (xhr.readyState === xhr.DONE) {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    document.querySelector('.last-login-date-block').innerHTML = response.last_login_date;
+                } else {
+                    console.error("AJAX Error: " + xhr.statusText);
                 }
-            });
-            ko.applyBindings(viewModel);
-        });
+            }
+        };
+        xhr.onerror = function() {
+            console.error("AJAX Error: " + xhr.statusText);
+        };
+        xhr.send();
     });
 </script>
+
+
