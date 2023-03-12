@@ -102,4 +102,14 @@ class Avatar extends Template
     {
         return $this->customerHelper->getCustomerLastLoginDate($this->customerSession->getCustomerId());
     }
+    /**
+     * Returns the URL for the customer's avatar information.
+     *
+     * @return string The URL for the customer's avatar information.
+     */
+    public function getAvatarInfoUrl(): string
+    {
+        return $this->getUrl('kamephis_customeravatar/index/index');
+    }
+
 }
