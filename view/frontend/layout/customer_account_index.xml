@@ -2,7 +2,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
 <body>
     <referenceContainer name="sidebar.main">
-        <block class="Kamephis\Avatar\Block\Avatar" name="customer_custom" template="Kamephis_Avatar::avatar.phtml" before="-" />
+        <block class="Kamephis\Avatar\Block\Avatar" name="customer_custom" template="Kamephis_Avatar::avatar.phtml" before="-" cacheable="false" />
     </referenceContainer>
 </body>
 </page>

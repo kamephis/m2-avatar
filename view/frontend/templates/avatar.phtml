@@ -26,6 +26,7 @@
 
 
 </style>
+<!--
 <div class="customer-info-wrapper">
     <div class="avatar-wrapper">
         <div class="avatar-circle">
@@ -43,4 +44,34 @@
         <a href="<?= $block->getUrl('customer/account/logout'); ?>"><?= __('Sign Out') ?></a>
     </div>
 </div>
+-->
+
+<div data-bind="html: avatarHtml"></div>
+
+<script type="text/javascript">
+    require([
+        'jquery',
+        'ko',
+        'mage/url',
+    ], function ($, ko, urlBuilder) {
+
+        var customerAvatar = {
+            avatarHtml: ko.observable(),
+            init: function () {
+                var ajaxUrl = urlBuilder.build('avatar/index/index');
+                var self = this;
+                $.ajax({
+                    url: ajaxUrl,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (response) {
+                        self.avatarHtml(response.avatarHtml);
+                    }
+                });
+            }
+        };
+        customerAvatar.init();
+        ko.applyBindings(customerAvatar);
+    });
+</script>
 

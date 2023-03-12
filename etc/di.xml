@@ -3,6 +3,12 @@
     <type name="Magento\Framework\View\Element\Template">
         <arguments>
             <argument name="customerHelper" xsi:type="object">Kamephis\Avatar\Helper\CustomerHelper</argument>
+
+            <argument name="controllerMap" xsi:type="array">
+                <item name="mycontroller" xsi:type="array">
+                    <item name="class" xsi:type="string">Kamephis\Avatar\Controller\Index\Index</item>
+                </item>
+            </argument>
         </arguments>
     </type>
 </config>
