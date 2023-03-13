@@ -14,27 +14,20 @@
         <tab id="kamephis" sortOrder="0" class="kamephis-tab">
             <label>Kamephis</label>
         </tab>
-        <section id="enable_avatar" translate="label" sortOrder="10" showInDefault="1" showInWebsite="0"
-                 showInStore="0">
-            <class>separator-top</class>
-            <label>Custom Avatars</label>
-            <tab>kamephis</tab>
-            <resource>Kamephis_Avatar::config</resource>
-            <group id="options" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0"
-                   showInStore="0">
-                <label>General</label>
-                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0"
-                       showInStore="0">
-                    <label>Enable custom avatars</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                </field>
-            </group>
-        </section>
 
         <section id="kamephis_avatar" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Kamephis Avatar</label>
             <tab>kamephis</tab>
             <resource>Kamephis_Avatar::config_kamephis_avatar</resource>
+            <group id="options" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0"
+                   showInStore="0">
+                <label>General</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0"
+                       showInStore="0">
+                    <label>Enable Customer Avatars</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
 
             <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Gravatar Settings</label>

@@ -37,7 +37,7 @@
 
     <div class="customer-info">
         <b>
-        <?= __('Hello');?> <?= $block->escapeUrl($block->customerHelper->getCustomerAttribute('firstname')); ?>
+        <?= __('Hello');?> <?= $block->escapeUrl($block->dataHelper->getCustomerAttribute('firstname')); ?>
         </b><br>
         <?= __('Last login: ');?><br>
         <span class="last-login-date-block"></span>

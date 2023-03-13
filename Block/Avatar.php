@@ -10,7 +10,7 @@ use Magento\Framework\View\Element\Template\Context;
 use Magento\Framework\View\Element\Template;
 use Kamephis\Avatar\Enum\AvatarTypes;
 use Magento\Framework\App\Helper\AbstractHelper;
-use Kamephis\Avatar\Helper\CustomerHelper;
+use Kamephis\Avatar\Helper\Data;
 
 /**
  * Class Avatar
@@ -22,11 +22,11 @@ class Avatar extends Template
     private const GRAVATAR_API_BASE_URL = 'https://www.gravatar.com/avatar/';
 
     public function __construct(
-        private readonly Session             $customerSession,
-        private readonly ScopeConfigInterface $scopeConfig,
-        public readonly AbstractHelper      $customerHelper,
-        Context                              $context,
-        array                                $data = []
+        private readonly Session                $customerSession,
+        private readonly ScopeConfigInterface    $scopeConfig,
+        public readonly AbstractHelper          $dataHelper,
+        Context                                 $context,
+        array                                   $data = []
     )
     {
         parent::__construct($context, $data);
@@ -46,7 +46,7 @@ class Avatar extends Template
         $avatarType = $this->scopeConfig->getValue('kamephis_avatar/general/type') ?? $type->getType();
         $size = $size ?? $this->scopeConfig->getValue('kamephis_avatar/general/size') ?? 80;
         $urlParams = $default === 'y' ? '%s%s?s=%d&d=%s&r=pg&f=y' : '%s%s?s=%d&d=%s&r=pg';
-        $email = $this->customerHelper->getCustomerAttribute('email');
+        $email = $this->dataHelper->getCustomerAttribute('email');
         $hash = md5(strtolower(trim($email)));
 
         $url = sprintf(
@@ -100,7 +100,7 @@ class Avatar extends Template
      */
     public function getLastLoginDate(): string
     {
-        return $this->customerHelper->getCustomerLastLoginDate($this->customerSession->getCustomerId());
+        return $this->dataHelper->getCustomerLastLoginDate($this->customerSession->getCustomerId());
     }
     /**
      * Returns the URL for the customer's avatar information.
@@ -111,5 +111,4 @@ class Avatar extends Template
     {
         return $this->getUrl('kamephis_customeravatar/index/index');
     }
-
 }

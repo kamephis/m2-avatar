@@ -12,7 +12,7 @@ use Magento\Customer\Model\LogFactory;
 use PHPUnit\Exception;
 use function PHPUnit\Framework\throwException;
 
-class CustomerHelper extends AbstractHelper
+class Data extends AbstractHelper
 {
     private CustomerRepositoryInterface $customerRepository;
     private CustomerSession $customerSession;
@@ -28,19 +28,6 @@ class CustomerHelper extends AbstractHelper
         $this->customerRepository = $customerRepository;
         $this->customerSession = $customerSession;
         $this->logFactory = $logFactory;
-    }
-
-    /**
-     * Get the users Timezone
-     * @return \DateTimeZone
-     */
-    protected function getUserTimeZone() : \DateTimeZone
-    {
-        try{
-            return $this->timeZone = date_default_timezone_get();
-        } catch(Exception $e){
-            $this->_logger->error('Could not get timezone.');
-        }
     }
 
     /**
@@ -118,5 +105,15 @@ class CustomerHelper extends AbstractHelper
         } catch (\Exception $e) {
             throw new LocalizedException(__('An error occurred while retrieving customer last login date: %1', $e->getMessage()), $e);
         }
+    }
+
+    /**
+     * Is Avatar Module enabled from Configuration
+     *
+     * @return bool
+     */
+    public function moduleEnabled()
+    {
+        return (bool)$this->scopeConfig->getValue('kamephis_avatar/options/enable');
     }
 }
