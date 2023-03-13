@@ -43,6 +43,7 @@ class Avatar extends Template
      */
     public function getGravatarUrl(AvatarTypes $type = AvatarTypes::ROBOHASH, ?int $size = null, ?string $default = 'y'): string
     {
+
         $avatarType = $this->scopeConfig->getValue('kamephis_avatar/general/type') ?? $type->getType();
         $size = $size ?? $this->scopeConfig->getValue('kamephis_avatar/general/size') ?? 80;
         $urlParams = $default === 'y' ? '%s%s?s=%d&d=%s&r=pg&f=y' : '%s%s?s=%d&d=%s&r=pg';
@@ -110,5 +111,15 @@ class Avatar extends Template
     public function getAvatarInfoUrl(): string
     {
         return $this->getUrl('kamephis_customeravatar/index/index');
+    }
+
+    /**
+     * Is Avatar Module enabled from Configuration
+     *
+     * @return string
+     */
+    public function moduleEnabled()
+    {
+        return $this->scopeConfig->getValue('kamephis_avatar/options/enable');
     }
 }

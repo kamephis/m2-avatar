@@ -9,8 +9,6 @@ use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Customer\Model\LogFactory;
-use PHPUnit\Exception;
-use function PHPUnit\Framework\throwException;
 
 class Data extends AbstractHelper
 {
@@ -105,15 +103,5 @@ class Data extends AbstractHelper
         } catch (\Exception $e) {
             throw new LocalizedException(__('An error occurred while retrieving customer last login date: %1', $e->getMessage()), $e);
         }
-    }
-
-    /**
-     * Is Avatar Module enabled from Configuration
-     *
-     * @return bool
-     */
-    public function moduleEnabled()
-    {
-        return (bool)$this->scopeConfig->getValue('kamephis_avatar/options/enable');
     }
 }

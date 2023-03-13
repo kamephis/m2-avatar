@@ -2,6 +2,7 @@
   "name": "kamephis/avatar",
   "description": "Custom avatars for magento 2",
   "type": "magento2-module",
+  "version": "1.0.1",
   "require": {
     "php": ">=8.1",
     "kamephis/m2-base": "^1.0.0"
