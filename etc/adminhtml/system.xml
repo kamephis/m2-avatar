@@ -51,14 +51,6 @@
                     <comment>Enter the default size (in pixels) for the Gravatar image.</comment>
                     <validate>required-entry validate-number validate-zero-or-greater</validate>
                 </field>
-
-                <field id="timezone" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Timezone</label>
-                    <depends>
-                        <field id="kamephis_avatar/options/enable">1</field>
-                    </depends>
-                    <source_model>Kamephis\Avatar\Model\Config\Source\Timezone</source_model>
-                </field>
             </group>
         </section>
     </system>
