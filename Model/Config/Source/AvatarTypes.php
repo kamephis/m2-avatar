@@ -7,7 +7,10 @@ use Kamephis\Avatar\Enum\AvatarTypes as Types;
 
 class AvatarTypes implements OptionSourceInterface
 {
-    public function toOptionArray()
+    /**
+     * @return array[]
+     */
+    public function toOptionArray() : array
     {
         $options = [
             [
