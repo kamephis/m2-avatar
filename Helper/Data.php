@@ -9,15 +9,25 @@ use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Customer\Model\LogFactory;
+use Magento\Framework\App\Helper\Context;
+use DateTimeZone;
+use DateTime;
 
 class Data extends AbstractHelper
 {
     private CustomerRepositoryInterface $customerRepository;
     private CustomerSession $customerSession;
     private LogFactory $logFactory;
-    private \DateTimeZone $timeZone;
+    private DateTimeZone $timeZone;
 
+    /**
+     * @param Context $context
+     * @param CustomerRepositoryInterface $customerRepository
+     * @param CustomerSession $customerSession
+     * @param LogFactory $logFactory
+     */
     public function __construct(
+        Context $context,
         CustomerRepositoryInterface $customerRepository,
         CustomerSession             $customerSession,
         LogFactory                  $logFactory
@@ -26,6 +36,7 @@ class Data extends AbstractHelper
         $this->customerRepository = $customerRepository;
         $this->customerSession = $customerSession;
         $this->logFactory = $logFactory;
+        parent::__construct($context);
     }
 
     /**
@@ -96,12 +107,30 @@ class Data extends AbstractHelper
             $customerId = $this->getCustomerId();
             $customerSession = $this->customerSession;
             $loginDate = $customerSession->getData('customer_last_login_date');
+            $timezone = $this->getTimeZoneConfig();
+            $dateTime = new DateTime('' . $loginDate, new DateTimeZone($timezone));
 
-            return date('d.m.Y H:i', $loginDate);
+            return $dateTime->format('d.m.Y H:i');
         } catch (LocalizedException $e) {
             throw new LocalizedException(__('Error retrieving customer last login date: %1', $e->getMessage()), $e);
         } catch (\Exception $e) {
             throw new LocalizedException(__('An error occurred while retrieving customer last login date: %1', $e->getMessage()), $e);
+        }
+    }
+
+    /**
+     * Get Timezone from configuration
+     * @return string
+     */
+    private function getTimeZoneConfig() : string
+    {
+        try{
+            return $this->scopeConfig?->getValue(
+                'kamephis_avatar/general/timezone',
+                \Magento\Store\Model\ScopeInterface::SCOPE_STORE)
+                ?? 'UTC';;
+        } catch (LocalizedException $e){
+            throw new LocalizedException(__('Error retrieving timezone: %1', $e->getMessage()), $e);
         }
     }
 }

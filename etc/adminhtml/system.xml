@@ -31,17 +31,33 @@
 
             <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Gravatar Settings</label>
-
-                <field id="type" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <depends>
+                    <field id="kamephis_avatar/options/enable">1</field>
+                </depends>
+                <field id="type" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" >
                     <label>Default Gravatar Type</label>
+                    <depends>
+                        <field id="kamephis_avatar/options/enable">1</field>
+                    </depends>
                     <comment>Select the default Gravatar type to use if the customer does not have a Gravatar account.</comment>
                     <source_model>Kamephis\Avatar\Model\Config\Source\AvatarTypes</source_model>
                 </field>
 
-                <field id="size" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="size" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Gravatar Size</label>
+                    <depends>
+                        <field id="kamephis_avatar/options/enable">1</field>
+                    </depends>
                     <comment>Enter the default size (in pixels) for the Gravatar image.</comment>
                     <validate>required-entry validate-number validate-zero-or-greater</validate>
+                </field>
+
+                <field id="timezone" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Timezone</label>
+                    <depends>
+                        <field id="kamephis_avatar/options/enable">1</field>
+                    </depends>
+                    <source_model>Kamephis\Avatar\Model\Config\Source\Timezone</source_model>
                 </field>
             </group>
         </section>
