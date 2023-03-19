@@ -27,7 +27,7 @@ class Data extends AbstractHelper
      * @param LogFactory $logFactory
      */
     public function __construct(
-        Context $context,
+        Context                     $context,
         CustomerRepositoryInterface $customerRepository,
         CustomerSession             $customerSession,
         LogFactory                  $logFactory
@@ -119,17 +119,16 @@ class Data extends AbstractHelper
     }
 
     /**
-     * Get Timezone from configuration
+     * Get Timezone from the store configuration
      * @return string
      */
-    private function getTimeZoneConfig() : string
+    private function getTimeZoneConfig(): string
     {
-        try{
+        try {
             return $this->scopeConfig?->getValue(
-                'kamephis_avatar/general/timezone',
-                \Magento\Store\Model\ScopeInterface::SCOPE_STORE)
-                ?? 'UTC';;
-        } catch (LocalizedException $e){
+                'general/locale/timezone',
+                \Magento\Store\Model\ScopeInterface::SCOPE_STORE) ?? 'UTC';
+        } catch (LocalizedException $e) {
             throw new LocalizedException(__('Error retrieving timezone: %1', $e->getMessage()), $e);
         }
     }
